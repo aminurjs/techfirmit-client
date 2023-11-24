@@ -23,10 +23,10 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // const login = (email, password) => {
-  //   setIsLoading(true);
-  //   return signInWithEmailAndPassword(auth, email, password);
-  // };
+  const login = (email, password) => {
+    setIsLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
   const updateUser = (name, image) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
