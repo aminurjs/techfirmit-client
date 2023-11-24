@@ -33,10 +33,10 @@ const AuthProvider = ({ children }) => {
       photoURL: image,
     });
   };
-  // const googleProvider = new GoogleAuthProvider();
-  // const googleLogin = () => {
-  //   return signInWithPopup(auth, googleProvider);
-  // };
+  const googleProvider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
 
   // const logout = () => {
   //   setIsLoading(true);

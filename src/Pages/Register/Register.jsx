@@ -55,27 +55,27 @@ const Register = () => {
       });
   };
 
-  // const handleGoogleLogin = () => {
-  //   const toastId = toast.loading("Signing in ...");
-  //   googleLogin()
-  //     .then((result) => {
-  //       const user = { email: result.user.email };
-  //       axios
-  //         .post(`/auth/access-token`, user)
-  //         .then((response) => {
-  //           console.log(response.data);
-  //         })
-  //         .catch((error) => {
-  //           return swal(error.message);
-  //         });
-  //       toast.success("Successfully Logged in!", { id: toastId });
-  //       navigate(location?.state ? location.state : "/");
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       toast.error(err.message, { id: toastId });
-  //     });
-  // };
+  const handleGoogleLogin = () => {
+    const toastId = toast.loading("Signing in ...");
+    googleLogin()
+      .then((result) => {
+        const user = { email: result.user.email };
+        axios
+          .post(`/auth/access-token`, user)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            return swal(error.message);
+          });
+        toast.success("Successfully Logged in!", { id: toastId });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message, { id: toastId });
+      });
+  };
 
   return (
     <div className="bg-transparent ">
