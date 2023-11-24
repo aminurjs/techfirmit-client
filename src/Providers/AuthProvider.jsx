@@ -38,21 +38,21 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // const logout = () => {
-  //   setIsLoading(true);
-  //   return signOut(auth);
-  // };
+  const logout = () => {
+    setIsLoading(true);
+    return signOut(auth);
+  };
 
-  // useEffect(() => {
-  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //     setIsLoading(false);
-  //   });
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setIsLoading(false);
+    });
 
-  //   return () => {
-  //     return unSubscribe();
-  //   };
-  // }, []);
+    return () => {
+      return unSubscribe();
+    };
+  }, []);
 
   const values = {
     createUser,

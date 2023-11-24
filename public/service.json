@@ -1,42 +1,42 @@
 [
   {
     "name": "Web Development",
-    "image": "web_development.jpg",
+    "image": "https://i.ibb.co/n7jwT1k/web-development.jpg",
     "description": "Craft responsive, user-friendly websites and applications. Customized solutions based on the latest web technologies. Seamless integration with content management systems (CMS)."
   },
   {
     "name": "Cloud Solutions",
-    "image": "cloud_solutions.jpg",
+    "image": "https://i.ibb.co/HT2YNqb/Cloud-Solution.jpg",
     "description": "Leverage the power of the cloud for scalable and flexible infrastructure. Cloud migration services for a smooth transition to cloud environments. Ongoing support and optimization for cloud-based applications."
   },
   {
     "name": "Cybersecurity",
-    "image": "cybersecurity.jpg",
+    "image": "https://i.ibb.co/DWHT0GC/syber-security.jpg",
     "description": "Comprehensive cybersecurity assessments and audits. Implementation of robust security measures to protect against threats. Regular monitoring and updates to ensure a secure digital environment."
   },
   {
     "name": "Mobile App Development",
-    "image": "mobile_app_development.jpg",
+    "image": "https://i.ibb.co/16Kz2b4/App-Development.jpg",
     "description": "Create cutting-edge mobile applications for iOS and Android. User-centric design and development. Seamless integration with backend systems and databases."
   },
   {
     "name": "Data Analytics",
-    "image": "data_analytics.jpg",
+    "image": "https://i.ibb.co/6JtV5dj/data-analysis.jpg",
     "description": "Unlock insights from your data with our advanced analytics solutions. Data visualization, predictive analytics, and actionable insights for informed decision-making."
   },
   {
     "name": "IT Consulting",
-    "image": "it_consulting.jpg",
+    "image": "https://i.ibb.co/5rxLB6M/it-consulting.jpg",
     "description": "Strategic IT consulting services to align technology with your business goals. Identify opportunities for improvement and optimization. Ongoing support and guidance."
   },
   {
     "name": "E-commerce Solutions",
-    "image": "ecommerce_solutions.jpg",
+    "image": "https://i.ibb.co/PFgHWz4/ecommerce.jpg",
     "description": "Build and optimize e-commerce platforms for seamless online transactions. User-friendly interfaces, secure payment gateways, and integration with inventory systems."
   },
   {
     "name": "Artificial Intelligence",
-    "image": "artificial_intelligence.jpg",
+    "image": "https://i.ibb.co/7KgFbQs/ai.jpg",
     "description": "Harness the power of AI for automation, machine learning, and predictive analytics. Implement intelligent solutions to enhance business processes and decision-making."
   }
 ]
