@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const Layout = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const Layout = ({ children }) => {
       <Navbar />
       {/* Page content here */}
       {children}
+      <Footer />
     </div>
   );
 };

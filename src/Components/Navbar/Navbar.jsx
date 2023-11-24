@@ -74,94 +74,96 @@ function DrawerAppBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: "#fff", py: 1 }}>
-        <Toolbar sx={{ m: "0 auto", maxWidth: "1280px", width: "100%" }}>
-          <IconButton
-            color="#262626"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link to={"/"} className="mr-3">
-            <img
-              className="w-10"
-              src="https://i.ibb.co/dGYT0sQ/logo.png"
-              alt=""
-            />
-          </Link>
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ flexGrow: 1, color: "#262626", fontWeight: "700" }}
-          >
-            <Link to={"/"}>TechFirm IT</Link>
-          </Typography>
-          <Box sx={{ display: { xs: "none", md: "block" }, mr: 2 }}>
-            {navItems.map((item) => (
-              <NavLink key={item.id} to={item.path}>
-                <Button sx={{ color: "#111" }}>{item.name}</Button>
-              </NavLink>
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+    <div>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar component="nav" sx={{ backgroundColor: "#fff", py: 1 }}>
+          <Toolbar sx={{ m: "0 auto", maxWidth: "1280px", width: "100%" }}>
+            <IconButton
+              color="#262626"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: "none" } }}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" sx={{ fontWeight: "600" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
+              <MenuIcon />
+            </IconButton>
+            <Link to={"/"} className="mr-3">
+              <img
+                className="w-10"
+                src="https://i.ibb.co/dGYT0sQ/logo.png"
+                alt=""
+              />
+            </Link>
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{ flexGrow: 1, color: "#262626", fontWeight: "700" }}
+            >
+              <Link to={"/"}>TechFirm IT</Link>
+            </Typography>
+            <Box sx={{ display: { xs: "none", md: "block" }, mr: 2 }}>
+              {navItems.map((item) => (
+                <NavLink key={item.id} to={item.path}>
+                  <Button sx={{ color: "#111" }}>{item.name}</Button>
+                </NavLink>
               ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", md: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" sx={{ fontWeight: "600" }}>
+                      {setting}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <nav>
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", md: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </nav>
+      </Box>
+    </div>
   );
 }
 
