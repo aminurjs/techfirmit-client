@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 
 const Layout = ({ children }) => {
   return (
-    <div className=" font-inter">
+    <div className=" font-roboto">
       {/* Navbar */}
       <Navbar />
       {/* Page content here */}

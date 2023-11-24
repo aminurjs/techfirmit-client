@@ -15,12 +15,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = [
   { id: 1, path: "/", name: "Home" },
-  { id: 2, path: "/about-us", name: "About Us" },
+  { id: 2, path: "/dashboard", name: "Dashboard" },
   { id: 3, path: "/contact-us", name: "Contact Us" },
 ];
 
@@ -43,16 +43,25 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+      <div className="flex gap-2 justify-center items-center py-3">
+        <Link to={"/"}>
+          <img
+            className="w-10"
+            src="https://i.ibb.co/dGYT0sQ/logo.png"
+            alt=""
+          />
+        </Link>
+        <Typography variant="h6" component="div" sx={{ color: "#262626" }}>
+          <Link to={"/"}>TechFirm IT</Link>
+        </Typography>
+      </div>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item.id} disablePadding>
             <NavLink to={item.path}>
               <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item.name} />
+                <ListItemText sx={{ fontWeight: "600" }} primary={item.name} />
               </ListItemButton>
             </NavLink>
           </ListItem>
@@ -67,10 +76,10 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
+      <AppBar component="nav" sx={{ backgroundColor: "#fff", py: 1 }}>
+        <Toolbar sx={{ m: "0 auto", maxWidth: "1280px", width: "100%" }}>
           <IconButton
-            color="inherit"
+            color="#262626"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -78,13 +87,24 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MUI
+          <Link to={"/"} className="mr-3">
+            <img
+              className="w-10"
+              src="https://i.ibb.co/dGYT0sQ/logo.png"
+              alt=""
+            />
+          </Link>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ flexGrow: 1, color: "#262626", fontWeight: "700" }}
+          >
+            <Link to={"/"}>TechFirm IT</Link>
           </Typography>
           <Box sx={{ display: { xs: "none", md: "block" }, mr: 2 }}>
             {navItems.map((item) => (
               <NavLink key={item.id} to={item.path}>
-                <Button sx={{ color: "#fff" }}>{item.name}</Button>
+                <Button sx={{ color: "#111" }}>{item.name}</Button>
               </NavLink>
             ))}
           </Box>
@@ -112,7 +132,9 @@ function DrawerAppBar(props) {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" sx={{ fontWeight: "600" }}>
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
