@@ -109,6 +109,11 @@ function DrawerAppBar(props) {
                 </NavLink>
               ))}
             </Box>
+            <Link to="/login">
+              <button className="py-2 px-5 text-white text-lg font-medium uppercase mr-3  bg-gradient-to-r from-blue-02 to-blue-01 hover:bg-transparent duration-500  rounded active:scale-95">
+                Login
+              </button>
+            </Link>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

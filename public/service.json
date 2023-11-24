@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Web Development",
+    "image": "web_development.jpg",
+    "description": "Craft responsive, user-friendly websites and applications. Customized solutions based on the latest web technologies. Seamless integration with content management systems (CMS)."
+  },
+  {
+    "name": "Cloud Solutions",
+    "image": "cloud_solutions.jpg",
+    "description": "Leverage the power of the cloud for scalable and flexible infrastructure. Cloud migration services for a smooth transition to cloud environments. Ongoing support and optimization for cloud-based applications."
+  },
+  {
+    "name": "Cybersecurity",
+    "image": "cybersecurity.jpg",
+    "description": "Comprehensive cybersecurity assessments and audits. Implementation of robust security measures to protect against threats. Regular monitoring and updates to ensure a secure digital environment."
+  },
+  {
+    "name": "Mobile App Development",
+    "image": "mobile_app_development.jpg",
+    "description": "Create cutting-edge mobile applications for iOS and Android. User-centric design and development. Seamless integration with backend systems and databases."
+  },
+  {
+    "name": "Data Analytics",
+    "image": "data_analytics.jpg",
+    "description": "Unlock insights from your data with our advanced analytics solutions. Data visualization, predictive analytics, and actionable insights for informed decision-making."
+  },
+  {
+    "name": "IT Consulting",
+    "image": "it_consulting.jpg",
+    "description": "Strategic IT consulting services to align technology with your business goals. Identify opportunities for improvement and optimization. Ongoing support and guidance."
+  },
+  {
+    "name": "E-commerce Solutions",
+    "image": "ecommerce_solutions.jpg",
+    "description": "Build and optimize e-commerce platforms for seamless online transactions. User-friendly interfaces, secure payment gateways, and integration with inventory systems."
+  },
+  {
+    "name": "Artificial Intelligence",
+    "image": "artificial_intelligence.jpg",
+    "description": "Harness the power of AI for automation, machine learning, and predictive analytics. Implement intelligent solutions to enhance business processes and decision-making."
+  }
+]
