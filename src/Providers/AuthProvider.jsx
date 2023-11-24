@@ -23,36 +23,36 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const login = (email, password) => {
-    setIsLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+  // const login = (email, password) => {
+  //   setIsLoading(true);
+  //   return signInWithEmailAndPassword(auth, email, password);
+  // };
   const updateUser = (name, image) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
     });
   };
-  const googleProvider = new GoogleAuthProvider();
-  const googleLogin = () => {
-    return signInWithPopup(auth, googleProvider);
-  };
+  // const googleProvider = new GoogleAuthProvider();
+  // const googleLogin = () => {
+  //   return signInWithPopup(auth, googleProvider);
+  // };
 
-  const logout = () => {
-    setIsLoading(true);
-    return signOut(auth);
-  };
+  // const logout = () => {
+  //   setIsLoading(true);
+  //   return signOut(auth);
+  // };
 
-  useEffect(() => {
-    const xyz = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setIsLoading(false);
-    });
+  // useEffect(() => {
+  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     setIsLoading(false);
+  //   });
 
-    return () => {
-      return xyz();
-    };
-  }, []);
+  //   return () => {
+  //     return unSubscribe();
+  //   };
+  // }, []);
 
   const values = {
     createUser,
