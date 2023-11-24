@@ -121,7 +121,10 @@ const Login = () => {
                   </span>
                 </div>
                 <div>
-                  <button className="w-full mt-6 mb-10 py-2.5 text-white text-lg font-medium  bg-gradient-to-r from-blue-02 to-blue-01 hover:bg-transparent duration-500  rounded active:scale-95">
+                  <button
+                    type="submit"
+                    className="w-full mt-6 mb-10 py-2.5 text-white text-lg font-medium  bg-gradient-to-r from-blue-02 to-blue-01 hover:bg-transparent duration-500  rounded active:scale-95"
+                  >
                     Login in with email
                   </button>
                 </div>

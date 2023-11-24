@@ -10,8 +10,8 @@ const Banner = () => {
   }, []);
   return (
     <>
-      <div className="bg-[url(https://i.ibb.co/HD2XTdx/lead-generation-for-IT-company.jpg)] bg-cover bg-center">
-        <div className="bg-dark-01 bg-opacity-60 py-20 md:py-36">
+      <div className="bg-[url(https://i.ibb.co/HD2XTdx/lead-generation-for-IT-company.jpg)] bg-cover bg-bottom">
+        <div className="bg-dark-01 bg-opacity-60 py-20 md:py-32">
           <div
             data-aos="fade-up"
             data-aos-duration="1500"
