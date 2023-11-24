@@ -2,7 +2,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "../../Components/Button/Button";
+import Button from "../../../Components/Button/Button";
 
 const Banner = () => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const Banner = () => {
     <>
       <div className="bg-[url(https://i.ibb.co/cxtLy9x/people-with-laptops-office.jpg)] bg-cover bg-center">
         <div className="bg-[url(https://i.ibb.co/Bj9mchw/h2-bg-slider1-overlay.png)] bg-cover bg-left">
-          <div className="bg-dark-01 bg-opacity-70 py-20 md:py-32">
+          <div className="bg-dark-01 bg-opacity-60 py-20 md:py-32">
             <div
               data-aos="fade-up"
               data-aos-duration="1500"

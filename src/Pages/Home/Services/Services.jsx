@@ -14,7 +14,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="bg-slate-100 py-20">
+    <div className="bg-[#f2f2f2] py-20">
       <div className="max-w-7xl mx-auto px-5">
         <div className="text-center">
           <h2 className="text-lg md:text-xl bg-gradient-to-r from-blue-01 to-blue-02 text-transparent bg-clip-text font-medium mb-4">
