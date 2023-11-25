@@ -20,8 +20,8 @@ const Services = () => {
           <h2 className="text-lg md:text-xl bg-gradient-to-r from-blue-01 to-blue-02 text-transparent bg-clip-text font-medium mb-4">
             Our Comprehensive IT Services
           </h2>
-          <h1 className="text-dark-01 text-4xl font-semibold max-w-3xl mx-auto mb-10">
-            Elevate Your Digital Presence with Our Expert Solutions
+          <h1 className="text-dark-01 text-4xl font-semibold max-w-3xl mx-auto mb-12">
+            We Are Dedicated To Serve You All Time.
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
