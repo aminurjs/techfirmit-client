@@ -2,11 +2,9 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 import {
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -33,10 +31,6 @@ const AuthProvider = ({ children }) => {
       photoURL: image,
     });
   };
-  const googleProvider = new GoogleAuthProvider();
-  const googleLogin = () => {
-    return signInWithPopup(auth, googleProvider);
-  };
 
   const logout = () => {
     setIsLoading(true);
@@ -61,7 +55,6 @@ const AuthProvider = ({ children }) => {
     user,
     isLoading,
     logout,
-    googleLogin,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;

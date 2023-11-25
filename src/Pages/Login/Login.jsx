@@ -1,7 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Helmet } from "react-helmet";
@@ -11,7 +10,7 @@ import swal from "sweetalert";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { googleLogin, login } = useAuth();
+  const { login } = useAuth();
   const location = useLocation();
   const axios = useAxios();
 
@@ -43,28 +42,6 @@ const Login = () => {
             return swal(error.code);
           });
         toast.success("Successfully Logged in!!", { id: toastId });
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error(err.message, { id: toastId });
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    const toastId = toast.loading("Logging in ...");
-    googleLogin()
-      .then((result) => {
-        const user = { email: result.user.email };
-        axios
-          .post(`/auth/access-token`, user)
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            return swal(error.code);
-          });
-        toast.success("Successfully Logged in!", { id: toastId });
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
@@ -129,21 +106,6 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-              <p className="text-center -mb-3.5">
-                <span className="bg-white  z-10 inline-block px-2">
-                  Or login
-                </span>
-              </p>
-              <div className="w-full h-[1px] bg-stone-300"></div>
-              <div className="text-center mt-8 w-4/5 lg:w-3/5 mx-auto">
-                <button
-                  onClick={handleGoogleLogin}
-                  className="block w-full p-2 border-2 border-blue-01  text-blue-01 font-medium rounded-lg mb-5"
-                >
-                  <FcGoogle className="inline text-2xl mr-2"></FcGoogle>
-                  Continue with Google
-                </button>
-              </div>
             </div>
           </div>
         </div>

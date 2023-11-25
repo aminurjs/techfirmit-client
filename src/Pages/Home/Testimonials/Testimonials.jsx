@@ -31,50 +31,143 @@ const Testimonials = () => {
             Discover What Our Valued Clients Say About Their Experience
           </h1>
         </div>
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          autoplay={true}
-          modules={[Pagination, Autoplay]}
-          className="mySwiper"
-        >
-          {" "}
-          {testimonials.map((testimonial, i) => (
-            <SwiperSlide key={i}>
-              {" "}
-              <div className="p-8 flex flex-col mb-16 bg-white">
-                <div className="flex justify-between items-end">
-                  <Rating
-                    style={{ maxWidth: 100 }}
-                    value={testimonial.rating}
-                    readOnly
-                  />
-                </div>
-                <p className="text-dark-02 my-3 text-justify flex-grow">
-                  {testimonial.review}
-                </p>
-                <div className="flex gap-3 items-center">
-                  <img
-                    className="w-12 h-11 rounded-full"
-                    src={testimonial.photo}
-                    alt=""
-                  />
-                  <div>
-                    <h3 className="text-dark-01 text-lg font-semibold">
-                      {testimonial.name}
-                    </h3>
-                    <h4 className="text-dark-02 text-sm">
-                      {testimonial.designation}
-                    </h4>
+        <div className="hidden lg:block">
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            autoplay={true}
+            modules={[Pagination, Autoplay]}
+            className="mySwiper"
+          >
+            {" "}
+            {testimonials.map((testimonial, i) => (
+              <SwiperSlide key={i}>
+                {" "}
+                <div className="p-8 flex flex-col mb-16 bg-white">
+                  <div className="flex justify-between items-end">
+                    <Rating
+                      style={{ maxWidth: 100 }}
+                      value={testimonial.rating}
+                      readOnly
+                    />
+                  </div>
+                  <p className="text-dark-02 my-3 text-justify flex-grow">
+                    {testimonial.review}
+                  </p>
+                  <div className="flex gap-3 items-center">
+                    <img
+                      className="w-12 h-11 rounded-full"
+                      src={testimonial.photo}
+                      alt=""
+                    />
+                    <div>
+                      <h3 className="text-dark-01 text-lg font-semibold">
+                        {testimonial.name}
+                      </h3>
+                      <h4 className="text-dark-02 text-sm">
+                        {testimonial.designation}
+                      </h4>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="hidden md:block lg:hidden">
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+            }}
+            autoplay={true}
+            modules={[Pagination, Autoplay]}
+            className="mySwiper"
+          >
+            {" "}
+            {testimonials.map((testimonial, i) => (
+              <SwiperSlide key={i}>
+                {" "}
+                <div className="p-8 flex flex-col mb-16 bg-white">
+                  <div className="flex justify-between items-end">
+                    <Rating
+                      style={{ maxWidth: 100 }}
+                      value={testimonial.rating}
+                      readOnly
+                    />
+                  </div>
+                  <p className="text-dark-02 my-3 text-justify flex-grow">
+                    {testimonial.review}
+                  </p>
+                  <div className="flex gap-3 items-center">
+                    <img
+                      className="w-12 h-11 rounded-full"
+                      src={testimonial.photo}
+                      alt=""
+                    />
+                    <div>
+                      <h3 className="text-dark-01 text-lg font-semibold">
+                        {testimonial.name}
+                      </h3>
+                      <h4 className="text-dark-02 text-sm">
+                        {testimonial.designation}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="block md:hidden">
+          <Swiper
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            autoplay={true}
+            modules={[Pagination, Autoplay]}
+            className="mySwiper"
+          >
+            {" "}
+            {testimonials.map((testimonial, i) => (
+              <SwiperSlide key={i}>
+                {" "}
+                <div className="p-8 flex flex-col mb-16 bg-white">
+                  <div className="flex justify-between items-end">
+                    <Rating
+                      style={{ maxWidth: 100 }}
+                      value={testimonial.rating}
+                      readOnly
+                    />
+                  </div>
+                  <p className="text-dark-02 my-3 text-justify flex-grow">
+                    {testimonial.review}
+                  </p>
+                  <div className="flex gap-3 items-center">
+                    <img
+                      className="w-12 h-11 rounded-full"
+                      src={testimonial.photo}
+                      alt=""
+                    />
+                    <div>
+                      <h3 className="text-dark-01 text-lg font-semibold">
+                        {testimonial.name}
+                      </h3>
+                      <h4 className="text-dark-02 text-sm">
+                        {testimonial.designation}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
