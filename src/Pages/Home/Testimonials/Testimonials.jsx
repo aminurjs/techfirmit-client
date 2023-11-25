@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
-import { Autoplay, Pagination } from "swiper/modules";
-
-import { Rating } from "@smastrom/react-rating";
-
-import "@smastrom/react-rating/style.css";
+import Data from "./Data";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -32,141 +24,13 @@ const Testimonials = () => {
           </h1>
         </div>
         <div className="hidden lg:block">
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            autoplay={true}
-            modules={[Pagination, Autoplay]}
-            className="mySwiper"
-          >
-            {" "}
-            {testimonials.map((testimonial, i) => (
-              <SwiperSlide key={i}>
-                {" "}
-                <div className="p-8 flex flex-col mb-16 bg-white">
-                  <div className="flex justify-between items-end">
-                    <Rating
-                      style={{ maxWidth: 100 }}
-                      value={testimonial.rating}
-                      readOnly
-                    />
-                  </div>
-                  <p className="text-dark-02 my-3 text-justify flex-grow">
-                    {testimonial.review}
-                  </p>
-                  <div className="flex gap-3 items-center">
-                    <img
-                      className="w-12 h-11 rounded-full"
-                      src={testimonial.photo}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-dark-01 text-lg font-semibold">
-                        {testimonial.name}
-                      </h3>
-                      <h4 className="text-dark-02 text-sm">
-                        {testimonial.designation}
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <Data testimonials={testimonials} slide={3} />
         </div>
         <div className="hidden md:block lg:hidden">
-          <Swiper
-            slidesPerView={2}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            autoplay={true}
-            modules={[Pagination, Autoplay]}
-            className="mySwiper"
-          >
-            {" "}
-            {testimonials.map((testimonial, i) => (
-              <SwiperSlide key={i}>
-                {" "}
-                <div className="p-8 flex flex-col mb-16 bg-white">
-                  <div className="flex justify-between items-end">
-                    <Rating
-                      style={{ maxWidth: 100 }}
-                      value={testimonial.rating}
-                      readOnly
-                    />
-                  </div>
-                  <p className="text-dark-02 my-3 text-justify flex-grow">
-                    {testimonial.review}
-                  </p>
-                  <div className="flex gap-3 items-center">
-                    <img
-                      className="w-12 h-11 rounded-full"
-                      src={testimonial.photo}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-dark-01 text-lg font-semibold">
-                        {testimonial.name}
-                      </h3>
-                      <h4 className="text-dark-02 text-sm">
-                        {testimonial.designation}
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <Data testimonials={testimonials} slide={2} />
         </div>
         <div className="block md:hidden">
-          <Swiper
-            slidesPerView={1}
-            pagination={{
-              clickable: true,
-            }}
-            autoplay={true}
-            modules={[Pagination, Autoplay]}
-            className="mySwiper"
-          >
-            {" "}
-            {testimonials.map((testimonial, i) => (
-              <SwiperSlide key={i}>
-                {" "}
-                <div className="p-8 flex flex-col mb-16 bg-white">
-                  <div className="flex justify-between items-end">
-                    <Rating
-                      style={{ maxWidth: 100 }}
-                      value={testimonial.rating}
-                      readOnly
-                    />
-                  </div>
-                  <p className="text-dark-02 my-3 text-justify flex-grow">
-                    {testimonial.review}
-                  </p>
-                  <div className="flex gap-3 items-center">
-                    <img
-                      className="w-12 h-11 rounded-full"
-                      src={testimonial.photo}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-dark-01 text-lg font-semibold">
-                        {testimonial.name}
-                      </h3>
-                      <h4 className="text-dark-02 text-sm">
-                        {testimonial.designation}
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <Data testimonials={testimonials} slide={1} />
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       return unSubscribe();
     };
   }, []);
-
+  console.log(user);
   const values = {
     createUser,
     login,

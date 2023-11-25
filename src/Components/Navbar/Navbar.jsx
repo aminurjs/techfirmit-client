@@ -16,6 +16,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const drawerWidth = 240;
 const navItems = [
@@ -28,8 +30,7 @@ function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const { user, logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -40,7 +41,20 @@ function DrawerAppBar(props) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const handleLogOut = () => {
+    console.log("Logout");
+    handleCloseUserMenu();
+    const toastId = toast.loading("Logging out ...");
+    logout()
+      .then(() => {
+        toast.success("Successfully Logged out!!", { id: toastId });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.success(error.message, { id: toastId });
+        // An error happened.
+      });
+  };
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <div className="flex gap-2 justify-center items-center py-3">
@@ -109,42 +123,60 @@ function DrawerAppBar(props) {
                 </NavLink>
               ))}
             </Box>
-            <Link to="/login">
-              <button className="py-2 px-5 text-white text-lg font-medium uppercase mr-3  bg-gradient-to-r from-blue-02 to-blue-01 hover:bg-transparent duration-500  rounded active:scale-95">
-                Login
-              </button>
-            </Link>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" sx={{ fontWeight: "600" }}>
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+            {!user ? (
+              <Link to="/login">
+                <button className="py-2 px-5 text-white text-lg font-medium uppercase mr-3  bg-gradient-to-r from-blue-02 to-blue-01 hover:bg-transparent duration-500  rounded active:scale-95">
+                  Login
+                </button>
+              </Link>
+            ) : (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, border: "1px solid #ddd" }}
+                  >
+                    <Avatar alt={user?.displayName} src={user?.photoURL} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <div className="py-2 px-4 flex flex-col items-center w-48">
+                    <IconButton sx={{ p: 0, mb: 1, border: "1px solid #ddd" }}>
+                      <Avatar alt={user?.displayName} src={user?.photoURL} />
+                    </IconButton>
+                    <h2 className="mt-2  text-neutral-900  font-medium text-lg text-center">
+                      {user?.displayName}
+                    </h2>
+                    <h2 className="mb-4  text-neutral-900  font-medium text-sm text-center">
+                      {user?.email}
+                    </h2>
+                    <MenuItem onClick={handleLogOut}>
+                      <Typography
+                        textAlign="center"
+                        sx={{ fontWeight: "600", mr: 5, width: 100 }}
+                      >
+                        Logout
+                      </Typography>
+                    </MenuItem>
+                  </div>
+                </Menu>
+              </Box>
+            )}
           </Toolbar>
         </AppBar>
         <nav>

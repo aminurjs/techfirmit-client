@@ -34,9 +34,9 @@ const Subscribe = () => {
               required
               id=""
             />
-            <button type="submit">
+            <div type="submit">
               <Button text={"Subscribe"} />
-            </button>
+            </div>
           </form>
         </div>
         <div className="md:w-1/2 p-10">
