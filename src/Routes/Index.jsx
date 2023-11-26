@@ -5,7 +5,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
 import Dashboard from "../Dashboard/Dashboard";
-import List from "../Dashboard/List";
+import List from "../Dashboard/EmployeeList/List";
 
 const Routes = createBrowserRouter([
   {
