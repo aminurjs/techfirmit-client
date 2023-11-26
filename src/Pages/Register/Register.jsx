@@ -102,7 +102,7 @@ const Register = () => {
         <div className="bg-white  rounded shadow p-10  border border-gray-200">
           <div>
             <h1 className="text-3xl text-dark-01  font-semibold text-center mb-2">
-              Register And Apply
+              Register - TechFirm IT
             </h1>
             <p className="text-center text-gray-600  mb-3">
               Already have an account?{"  "}

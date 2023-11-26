@@ -16,7 +16,7 @@ const Error = () => {
         </h1>
         <div className="w-20 h-1.5 bg-dark-03 mb-5 mx-auto relative bottom-20"></div>
         <Link to="/">
-          <button className="py-3 relative bottom-20 px-10 text-white bg-dark-03 border border-dark-03 rounded uppercase font-medium active:scale-95">
+          <button className="py-3 relative bottom-20 px-10 text-white bg-gradient-to-r from-blue-02 to-blue-01 border border-dark-03 rounded uppercase font-medium active:scale-95">
             Go home
           </button>
         </Link>
