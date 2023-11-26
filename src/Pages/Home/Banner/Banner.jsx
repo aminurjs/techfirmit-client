@@ -10,7 +10,7 @@ const Banner = () => {
   }, []);
   return (
     <>
-      <div className="bg-[url(https://i.ibb.co/cxtLy9x/people-with-laptops-office.jpg)] bg-cover bg-center">
+      <div className="bg-[url(https://i.ibb.co/MV2Rk2n/report.jpg)] bg-cover bg-center">
         <div className="bg-[url(https://i.ibb.co/Bj9mchw/h2-bg-slider1-overlay.png)] bg-cover bg-left">
           <div className="bg-dark-01 bg-opacity-60 py-20 md:py-32">
             <div

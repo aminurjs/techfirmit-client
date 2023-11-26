@@ -3,6 +3,7 @@ import { FaXmark } from "react-icons/fa6";
 import { FaCheck, FaCheckSquare } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Pay from "../Pay/Pay";
+import { Link } from "react-router-dom";
 
 const List = () => {
   const [list, setList] = useState([]);
@@ -120,9 +121,11 @@ const List = () => {
                     )}
                   </th>
                   <th>
-                    <button className="btn btn-info btn-sm btn-outline">
-                      Details
-                    </button>
+                    <Link to={"/dashboard/details"}>
+                      <button className="btn btn-info btn-sm btn-outline">
+                        Details
+                      </button>
+                    </Link>
                   </th>
                 </tr>
               ))}

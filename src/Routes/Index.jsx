@@ -6,6 +6,9 @@ import Register from "../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
 import Dashboard from "../Dashboard/Dashboard";
 import List from "../Dashboard/EmployeeList/List";
+import EmployeeDetails from "../Dashboard/EmployeeDetails/EmployeeDetails";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import Progress from "../Dashboard/Progress/Progress";
 
 const Routes = createBrowserRouter([
   {
@@ -24,7 +27,21 @@ const Routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [{ path: "employee-list", element: <List /> }],
+    children: [
+      {
+        index: true,
+        element: <DashboardHome />,
+      },
+      { path: "employee-list", element: <List /> },
+      {
+        path: "details",
+        element: <EmployeeDetails />,
+      },
+      {
+        path: "progress",
+        element: <Progress />,
+      },
+    ],
   },
 ]);
 
