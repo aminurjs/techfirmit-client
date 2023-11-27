@@ -18,6 +18,8 @@ import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxios from "../../Hooks/useAxios";
+import swal from "sweetalert";
 
 const drawerWidth = 240;
 const navItems = [
@@ -41,13 +43,21 @@ function DrawerAppBar(props) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const axios = useAxios();
   const handleLogOut = () => {
-    console.log("Logout");
     handleCloseUserMenu();
     const toastId = toast.loading("Logging out ...");
     logout()
       .then(() => {
         toast.success("Successfully Logged out!!", { id: toastId });
+        axios
+          .post("/auth/logout", user)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            return swal(error.code);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -168,7 +178,10 @@ function DrawerAppBar(props) {
                     <MenuItem onClick={handleLogOut}>
                       <Typography
                         textAlign="center"
-                        sx={{ fontWeight: "600", mr: 5, width: 100 }}
+                        sx={{
+                          fontWeight: "600",
+                          width: 100,
+                        }}
                       >
                         Logout
                       </Typography>

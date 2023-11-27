@@ -1,17 +1,28 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Data from "./Data";
+import useAxios from "../../../Hooks/useAxios";
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const axios = useAxios();
 
-  useEffect(() => {
-    fetch("./test.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setTestimonials(data);
-      });
-  }, []);
+  const getFeatured = async () => {
+    const res = await axios.get("/testimonials");
+    return res.data;
+  };
+
+  const { data: testimonials = [], isLoading } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: getFeatured,
+  });
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-center mt-20 mb-24">
+          <span className="loading loading-spinner text-dark-03 loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="bg-[#f2f2f2]">
       <div className="max-w-7xl mx-auto px-5 py-20">

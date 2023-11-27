@@ -34,6 +34,13 @@ const DashboardMenu = () => {
         <FaClipboardList className="text-2xl" />{" "}
         <span className="hidden md:block">Payment History</span>
       </NavLink>
+      <NavLink
+        to={"/dashboard/work-sheet"}
+        className="w-full my-2 py-3 px-5 text-dark-01 text-left text-lg font-medium bg-gray-100 hover:bg-gray-200 duration-500 flex items-center gap-3"
+      >
+        <SiGooglesheets className="text-2xl" />{" "}
+        <span className="hidden md:block">Work Sheet</span>
+      </NavLink>
     </>
   );
 };

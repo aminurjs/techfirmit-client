@@ -26,6 +26,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Logging in ...");
 
     const form = new FormData(e.currentTarget);
     const name = form.get("name");
@@ -33,17 +34,9 @@ const Register = () => {
     const role = form.get("role");
     const salary = form.get("salary");
     const designation = form.get("designation");
-    const bankAccountNo = form.get("bankAccountNo");
+    const bankAccount = form.get("bankAccountNo");
     const password = form.get("password");
-    console.log({
-      name,
-      email,
-      password,
-      role,
-      salary,
-      designation,
-      bankAccountNo,
-    });
+
     if (!role) {
       return setRequired("This field required");
     }
@@ -91,23 +84,29 @@ const Register = () => {
         console.error("Error uploading image:", error.message);
       }
     }
-    // const res = await axios.post(image_hosting_api, image, {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // });
-    // console.log(res.data.data.display_url);
-    // let photo = null;
-    // if (res.data.data.display_url) {
-    //   photo = res.data.data.display_url;
-    // }
-    const toastId = toast.loading("Logging in ...");
-
+    const data = {
+      name,
+      email,
+      role,
+      salary: parseFloat(salary),
+      photo,
+      designation,
+      bankAccount,
+    };
+    console.log(data);
     createUser(email, password)
       .then((result) => {
         const user = { email: result.user.email };
         axios2
-          .post(`/auth/access-token`, user)
+          .post("/employees", data)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            return swal(error.code);
+          });
+        axios2
+          .post("/auth/access-token", user)
           .then((response) => {
             console.log(response.data);
           })

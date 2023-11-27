@@ -1,17 +1,28 @@
-import { useEffect, useState } from "react";
 import Service from "./Service";
+import useAxios from "../../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const Services = () => {
-  const [services, setServices] = useState([]);
+  const axios = useAxios();
 
-  useEffect(() => {
-    fetch("./service.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setServices(data);
-      });
-  }, []);
+  const getFeatured = async () => {
+    const res = await axios.get("/services");
+    return res.data;
+  };
+
+  const { data: services = [], isLoading } = useQuery({
+    queryKey: ["services"],
+    queryFn: getFeatured,
+  });
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-center mt-40 mb-80">
+          <span className="loading loading-spinner text-dark-03 loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#f2f2f2] py-20">
@@ -25,8 +36,8 @@ const Services = () => {
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.slice(0, 6).map((service, i) => (
-            <Service key={i} card={service} />
+          {services.slice(0, 6).map((service) => (
+            <Service key={service?._id} card={service} />
           ))}
         </div>
       </div>

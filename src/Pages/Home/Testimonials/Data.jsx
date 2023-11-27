@@ -20,8 +20,8 @@ const Data = ({ testimonials, slide }) => {
       className="mySwiper"
     >
       {" "}
-      {testimonials.map((testimonial, i) => (
-        <SwiperSlide key={i}>
+      {testimonials.map((testimonial) => (
+        <SwiperSlide key={testimonial._id}>
           {" "}
           <div className="p-8 flex flex-col mb-16 bg-white">
             <div className="flex justify-between items-end">

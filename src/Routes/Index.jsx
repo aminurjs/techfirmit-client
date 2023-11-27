@@ -11,6 +11,7 @@ import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Progress from "../Dashboard/Progress/Progress";
 import AllEmployees from "../Dashboard/AllEmployees/AllEmployees";
 import PaymentHistory from "../Dashboard/PaymentHistory/PaymentHistory";
+import WorkSheet from "../Dashboard/workSheet/WorkSheet";
 
 const Routes = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Routes = createBrowserRouter([
       {
         path: "payment-history",
         element: <PaymentHistory />,
+      },
+      {
+        path: "work-sheet",
+        element: <WorkSheet />,
       },
     ],
   },

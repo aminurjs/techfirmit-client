@@ -31,7 +31,6 @@ const AllEmployees = () => {
   };
   return (
     <>
-      {" "}
       <div className="border-b border-gray-200 bg-white  p-5">
         <Typography
           variant="h5"
