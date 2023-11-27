@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
-import { FaUsers } from "react-icons/fa";
-import { SiGooglesheets } from "react-icons/si";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import DashboardMenu from "./DashboardMenu";
 
 const Dashboard = () => {
   return (
@@ -26,20 +25,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="p-2">
-          <NavLink
-            to={"/dashboard/employee-list"}
-            className="w-full my-2 py-3 px-5 text-dark-01 text-left text-lg font-medium bg-gray-100 hover:bg-gray-200 duration-500 flex items-center gap-3"
-          >
-            <FaUsers className="text-2xl" />{" "}
-            <span className="hidden md:block">Employee List</span>
-          </NavLink>
-          <NavLink
-            to={"/dashboard/progress"}
-            className="w-full my-2 py-3 px-5 text-dark-01 text-left text-lg font-medium bg-gray-100 hover:bg-gray-200 duration-500 flex items-center gap-3"
-          >
-            <SiGooglesheets className="text-2xl" />{" "}
-            <span className="hidden md:block">Progress</span>
-          </NavLink>
+          <DashboardMenu />
         </div>
       </div>
       <div className="w-full bg-slate-100 min-h-screen">

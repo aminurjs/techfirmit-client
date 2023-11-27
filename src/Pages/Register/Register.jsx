@@ -8,14 +8,19 @@ import swal from "sweetalert";
 import useAxios from "../../Hooks/useAxios";
 import axios from "axios";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+const key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [required, setRequired] = useState("");
   const [passVal, setPassVal] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const { createUser, updateUser } = useAuth();
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
   const navigate = useNavigate();
   const axios2 = useAxios();
 
@@ -25,7 +30,6 @@ const Register = () => {
     const form = new FormData(e.currentTarget);
     const name = form.get("name");
     const email = form.get("email");
-    const image = e.target;
     const role = form.get("role");
     const salary = form.get("salary");
     const designation = form.get("designation");
@@ -34,7 +38,6 @@ const Register = () => {
     console.log({
       name,
       email,
-      image,
       password,
       role,
       salary,
@@ -57,17 +60,47 @@ const Register = () => {
       setPassVal("Must one special characters");
       return;
     }
+
+    let photo;
     setPassVal("");
-    const res = await axios.post(image_hosting_api, image, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
-    console.log(res.data.data.display_url);
-    let photo = null;
-    if (res.data.data.display_url) {
-      photo = res.data.data.display_url;
+    if (!selectedFile) {
+      photo = null;
+    } else {
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+      try {
+        const response = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${key}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const imageUrl = response.data.data.url;
+          photo = imageUrl;
+          console.log("Image uploaded successfully:", imageUrl);
+        } else {
+          console.error("Image upload failed:", response.statusText);
+        }
+      } catch (error) {
+        photo = null;
+        console.error("Error uploading image:", error.message);
+      }
     }
+    // const res = await axios.post(image_hosting_api, image, {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // });
+    // console.log(res.data.data.display_url);
+    // let photo = null;
+    // if (res.data.data.display_url) {
+    //   photo = res.data.data.display_url;
+    // }
     const toastId = toast.loading("Logging in ...");
 
     createUser(email, password)
@@ -259,6 +292,7 @@ const Register = () => {
                 </div>
                 <div>
                   <input
+                    onChange={handleFileChange}
                     className=" p-2 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md w-full"
                     type="file"
                     accept=".png, .jpg, .jpeg"

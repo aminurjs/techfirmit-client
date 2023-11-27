@@ -35,7 +35,7 @@ const EmployeeDetails = () => {
   return (
     <div className="flex gap-6 flex-col md:flex-row ">
       <div className="w-full md:w-1/3 lg:w-1/4 text-center bg-white rounded p-5">
-        <img className=" lg:w-3/5 mx-auto rounded-lg" src={user.photo} alt="" />
+        <img className=" w-3/5 mx-auto rounded-lg" src={user.photo} alt="" />
         <h2 className="text-2xl mb-1 mt-4 font-semibold text-dark-01 ">
           {user.name}
         </h2>

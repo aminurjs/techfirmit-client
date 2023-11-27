@@ -9,6 +9,8 @@ import List from "../Dashboard/EmployeeList/List";
 import EmployeeDetails from "../Dashboard/EmployeeDetails/EmployeeDetails";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import Progress from "../Dashboard/Progress/Progress";
+import AllEmployees from "../Dashboard/AllEmployees/AllEmployees";
+import PaymentHistory from "../Dashboard/PaymentHistory/PaymentHistory";
 
 const Routes = createBrowserRouter([
   {
@@ -33,6 +35,7 @@ const Routes = createBrowserRouter([
         element: <DashboardHome />,
       },
       { path: "employee-list", element: <List /> },
+      { path: "all-employee-list", element: <AllEmployees /> },
       {
         path: "details",
         element: <EmployeeDetails />,
@@ -40,6 +43,10 @@ const Routes = createBrowserRouter([
       {
         path: "progress",
         element: <Progress />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },
