@@ -1,18 +1,38 @@
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useAxios from "../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const Progress = () => {
-  const [selectedName, setSelectedName] = useState("Default");
-  const [list, setList] = useState([]);
+  const [selectedName, setSelectedName] = useState("default");
+  const axios = useAxios();
 
-  useEffect(() => {
-    fetch("./../worksheet.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setList(data);
-      });
-  }, []);
+  const getWorks = async () => {
+    const res = await axios.get(`/all-works?filter=${selectedName}`);
+    return res.data;
+  };
+
+  const {
+    data: list = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["all-works"],
+    queryFn: getWorks,
+  });
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-center mt-40 mb-80">
+          <span className="loading loading-spinner text-dark-03 loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
+  const handleSelect = (e) => {
+    setSelectedName(e.target.value);
+    refetch();
+  };
   return (
     <>
       <div className="border-b border-gray-200 bg-white  p-5 max-w-4xl flex justify-between">
@@ -34,9 +54,9 @@ const Progress = () => {
             id="nameFilter"
             className="px-3 py-1.5 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md "
             value={selectedName}
-            onChange={(e) => setSelectedName(e.target.value)}
+            onChange={handleSelect}
           >
-            <option value="Default">Default</option>
+            <option value="default">Default</option>
             {list?.map((item, i) => (
               <option key={i} value={item?.name}>
                 {item?.name}

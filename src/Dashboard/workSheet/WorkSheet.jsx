@@ -1,8 +1,36 @@
 import { Typography } from "@mui/material";
 import { useState } from "react";
+import swal from "sweetalert";
+import useAxios from "../../Hooks/useAxios";
+import useAuth from "../../Hooks/useAuth";
 
 const WorkSheet = () => {
-  const [selectedTask, setSelectedTask] = useState("");
+  const [selectedTask, setSelectedTask] = useState("sales");
+  const { user } = useAuth();
+  const axios = useAxios();
+
+  const handleWorkSheet = (e) => {
+    e.preventDefault();
+    const hours = e.target.hours.value;
+    const date = e.target.date.value;
+    const workSheet = {
+      task: selectedTask,
+      hours: parseFloat(hours),
+      date,
+      name: user.displayName,
+    };
+    axios
+      .post("/work-sheet", workSheet)
+      .then((response) => {
+        if (response.data.acknowledged) {
+          swal({ title: "Work Submitted", icon: "success" });
+        }
+      })
+      .catch((error) => {
+        return swal(error.code);
+      });
+  };
+
   return (
     <div>
       <div className="border-b border-gray-200 bg-white p-5">
@@ -15,7 +43,7 @@ const WorkSheet = () => {
         </Typography>
       </div>
       <div className=" bg-white p-5">
-        <form>
+        <form onSubmit={handleWorkSheet}>
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-5">
             <div className="">
               <label
@@ -45,7 +73,7 @@ const WorkSheet = () => {
               <div>
                 <label
                   className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
-                  htmlFor="hour"
+                  htmlFor="hours"
                 >
                   Hours:
                 </label>
@@ -54,9 +82,9 @@ const WorkSheet = () => {
                 <input
                   className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md w-full"
                   type="number"
-                  name="hour"
-                  id="hour"
-                  placeholder="Work Hour"
+                  name="hours"
+                  id="hours"
+                  placeholder="Work Hours"
                   required
                 />
               </div>
