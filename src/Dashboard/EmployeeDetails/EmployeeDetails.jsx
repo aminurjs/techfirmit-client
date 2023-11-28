@@ -1,6 +1,9 @@
+import { useParams } from "react-router-dom";
 import Chart from "./Chart";
+import useAxios from "../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
-const user = {
+const data = {
   name: "Grace Wang",
   email: "grace.wang@example.com",
   verified: false,
@@ -32,10 +35,40 @@ const user = {
 };
 
 const EmployeeDetails = () => {
+  const { id } = useParams();
+
+  const axios = useAxios();
+
+  const getEmployee = async () => {
+    const res = await axios.get(`/details/${id}`);
+    return res.data;
+  };
+
+  const { data: user = {}, isLoading } = useQuery({
+    queryKey: ["employee-details"],
+    queryFn: getEmployee,
+  });
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-center mt-40 mb-80">
+          <span className="loading loading-spinner text-dark-03 loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
+  console.log(user);
+
   return (
     <div className="flex gap-6 flex-col md:flex-row ">
       <div className="w-full md:w-1/3 lg:w-1/4 text-center bg-white rounded p-5">
-        <img className=" w-3/5 mx-auto rounded-lg" src={user.photo} alt="" />
+        <div className="h-32 w-32 mx-auto rounded-full overflow-hidden">
+          <img
+            className="scale-150 mt-5 w-auto mx-auto rounded-lg"
+            src={user.photo}
+            alt=""
+          />
+        </div>
         <h2 className="text-2xl mb-1 mt-4 font-semibold text-dark-01 ">
           {user.name}
         </h2>
@@ -46,7 +79,7 @@ const EmployeeDetails = () => {
           Salary chart
         </h2>
         <div className="overflow-x-auto ml-5">
-          <Chart data={user.salary} w={500} h={300} s={50} />
+          <Chart data={data.salary} w={500} h={300} s={50} />
         </div>
       </div>
     </div>

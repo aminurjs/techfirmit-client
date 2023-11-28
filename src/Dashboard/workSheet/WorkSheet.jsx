@@ -11,7 +11,7 @@ const WorkSheet = () => {
           component="div"
           sx={{ flexGrow: 1, color: "#262626", fontWeight: "700" }}
         >
-          Salary History
+          Work Sheet
         </Typography>
       </div>
       <div className=" bg-white p-5">

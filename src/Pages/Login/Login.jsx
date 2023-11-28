@@ -10,7 +10,7 @@ import swal from "sweetalert";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const location = useLocation();
   const axios = useAxios();
 
@@ -33,6 +33,18 @@ const Login = () => {
       .then((result) => {
         console.log(result.user.email);
         const user = { email: result.user.email };
+        axios
+          .post("/auth/status", user)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            if (error.response.status === 403) {
+              swal("You can't Log in");
+              return logout();
+            }
+            return console.log(error.response.status);
+          });
         axios
           .post(`/auth/access-token`, user)
           .then((response) => {

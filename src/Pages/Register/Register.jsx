@@ -84,14 +84,19 @@ const Register = () => {
         console.error("Error uploading image:", error.message);
       }
     }
+    let verified = false;
+    if (role === "HR") {
+      verified = true;
+    }
     const data = {
       name,
       email,
-      role,
+      role: role.toLowerCase(),
       salary: parseFloat(salary),
       photo,
       designation,
       bankAccount,
+      verified,
     };
     console.log(data);
     createUser(email, password)

@@ -1,22 +1,37 @@
-import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { FaCheck, FaCheckSquare } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Pay from "../Pay/Pay";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../Hooks/useAxios";
 
 const List = () => {
-  const [list, setList] = useState([]);
+  const axios = useAxios();
 
-  useEffect(() => {
-    fetch("./../employee.json")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setList(data);
-      });
-  }, []);
-  const handleVerify = () => {
+  const getEmployees = async () => {
+    const res = await axios.get("/employee-list");
+    return res.data;
+  };
+
+  const {
+    data: list = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["employee-list"],
+    queryFn: getEmployees,
+  });
+  if (isLoading) {
+    return (
+      <div>
+        <div className="text-center mt-40 mb-80">
+          <span className="loading loading-spinner text-dark-03 loading-lg"></span>
+        </div>
+      </div>
+    );
+  }
+  const handleVerify = async (_id) => {
     Swal.fire({
       title: "Verify Employee?",
       icon: "warning",
@@ -26,9 +41,17 @@ const List = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Verified!",
-        });
+        axios
+          .patch(`employees/verified/${_id}`)
+          .then((res) => {
+            if (res.data.matchedCount > 0) {
+              refetch();
+              Swal.fire({ icon: "success", title: "Verified!" });
+            }
+          })
+          .catch((error) => {
+            return Swal.fire({ title: error.code });
+          });
       }
     });
   };
@@ -98,7 +121,7 @@ const List = () => {
                       </button>
                     ) : (
                       <button
-                        onClick={handleVerify}
+                        onClick={() => handleVerify(item._id)}
                         className="btn btn-circle bg-transparent border-none"
                       >
                         <FaXmark className="text-2xl text-red-500" />
@@ -121,7 +144,7 @@ const List = () => {
                     )}
                   </th>
                   <th>
-                    <Link to={"/dashboard/details"}>
+                    <Link to={`/dashboard/details/${item?._id}`}>
                       <button className="btn btn-info btn-sm btn-outline">
                         Details
                       </button>
