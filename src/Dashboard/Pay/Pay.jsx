@@ -27,6 +27,15 @@ function Pay({ item }) {
   // State to store the selected month and year
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedYear, setSelectedYear] = useState(currentYear);
+  const { salary, verified, email } = item;
+  const data = {
+    handleClose,
+    salary,
+    verified,
+    email,
+    selectedMonth,
+    selectedYear,
+  };
 
   // Array to store the months for the dropdown
   const monthOptions = Array.from({ length: 12 }, (_, index) => index); // Months are 1-based
@@ -51,15 +60,6 @@ function Pay({ item }) {
     setSelectedMonth(currentMonth);
     setSelectedYear(currentYear);
   }, [currentMonth, currentYear]);
-  const { salary, verified, email } = item;
-  const data = {
-    handleClose,
-    salary,
-    verified,
-    email,
-    selectedMonth,
-    selectedYear,
-  };
 
   return (
     <>

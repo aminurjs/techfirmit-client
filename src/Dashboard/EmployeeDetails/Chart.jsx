@@ -17,7 +17,7 @@ const Chart = ({ data, w, h, s }) => {
       barSize={s}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="month" padding={{ left: 10, right: 10 }} />
+      <XAxis dataKey="date" padding={{ left: 10, right: 10 }} />
       <YAxis />
       <Bar dataKey="amount" fill="#8884d8" label={{ position: "top" }}>
         {data.map((entry, index) => (

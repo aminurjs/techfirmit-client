@@ -9,6 +9,7 @@ const CheckoutForm = ({ data }) => {
   const { salary, verified, email, handleClose, selectedMonth, selectedYear } =
     data;
   const [clientSecret, setClientSecret] = useState();
+  const [paid, setPaid] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
@@ -26,16 +27,26 @@ const CheckoutForm = ({ data }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (!stripe || !elements) {
-      return;
+      return setLoading(false);
     }
 
     const card = elements.getElement(CardElement);
 
     if (card == null) {
-      return;
+      return setLoading(false);
     }
+    const res = await axios.post("/checking-payment", {
+      email,
+      selectedMonth,
+      selectedYear,
+    });
+    if (res.data.status) {
+      setPaid("Already Paid This Months Salary");
+      return setLoading(false);
+    }
+    setPaid("");
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -44,11 +55,11 @@ const CheckoutForm = ({ data }) => {
     if (error) {
       console.log("[error]", error);
       setError(error.message);
+      setLoading(false);
     } else {
       console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
-    setLoading(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -90,42 +101,45 @@ const CheckoutForm = ({ data }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        className="py-2 px-5 border-gray-200 border"
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#767676",
+    <>
+      <form onSubmit={handleSubmit}>
+        <CardElement
+          className="py-2 px-5 border-gray-200 border"
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#767676",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      {loading ? (
-        <button
-          disabled
-          className="btn btn-secondary btn-sm px-12 mt-5 rounded"
-        >
-          <span className="loading loading-spinner"></span>
-        </button>
-      ) : (
-        <button
-          className="btn btn-accent text-white btn-sm px-10 mt-5 rounded"
-          type="submit"
-          disabled={!stripe || !clientSecret || !verified}
-        >
-          Pay
-        </button>
-      )}
-      <p className="text-red-500 mt-2">{error}</p>
-    </form>
+          }}
+        />
+        {loading ? (
+          <button
+            disabled
+            className="btn btn-secondary btn-sm px-12 mt-5 rounded"
+          >
+            <span className="loading loading-spinner"></span>
+          </button>
+        ) : (
+          <button
+            className="btn btn-accent text-white btn-sm px-10 mt-5 rounded"
+            type="submit"
+            disabled={!stripe || !clientSecret || !verified}
+          >
+            Pay
+          </button>
+        )}
+        <p className="text-red-500 mt-2">{error}</p>
+        <p className="text-green-500 mb-2 text-lg font-medium">{paid}</p>
+      </form>
+    </>
   );
 };
 CheckoutForm.propTypes = {

@@ -145,7 +145,7 @@ const List = () => {
                     )}
                   </th>
                   <th>
-                    <Link to={`/dashboard/details/${item?._id}`}>
+                    <Link to={`/dashboard/details/${item?.email}`}>
                       <button className="btn btn-info btn-sm btn-outline">
                         Details
                       </button>

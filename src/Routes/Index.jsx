@@ -15,6 +15,7 @@ import WorkSheet from "../Dashboard/workSheet/WorkSheet";
 import AdminRoute from "./AdminRoute";
 import HRRoute from "./HRRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import Contact from "../Pages/Contact/Contact";
 
 const Routes = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const Routes = createBrowserRouter([
       },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "contact-us", element: <Contact /> },
     ],
   },
   {
@@ -59,7 +61,7 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "details/:id",
+        path: "details/:email",
         element: (
           <HRRoute>
             <EmployeeDetails />

@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import Payment from "../Payment/payment";
 
 const DashboardHome = () => {
   return (
@@ -11,7 +10,6 @@ const DashboardHome = () => {
       >
         Dashboard Home
       </Typography>
-      <Payment />
     </div>
   );
 };
