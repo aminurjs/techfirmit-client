@@ -139,6 +139,7 @@ const List = () => {
                         item={{
                           salary: item?.salary,
                           verified: item?.verified,
+                          email: item?.email,
                         }}
                       />
                     )}

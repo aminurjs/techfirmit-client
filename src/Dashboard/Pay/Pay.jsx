@@ -3,7 +3,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import Payment from "../Payment/payment";
+import { Close } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -50,7 +51,15 @@ function Pay({ item }) {
     setSelectedMonth(currentMonth);
     setSelectedYear(currentYear);
   }, [currentMonth, currentYear]);
-  const { salary, verified } = item;
+  const { salary, verified, email } = item;
+  const data = {
+    handleClose,
+    salary,
+    verified,
+    email,
+    selectedMonth,
+    selectedYear,
+  };
 
   return (
     <>
@@ -67,6 +76,11 @@ function Pay({ item }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <div className="flex justify-end">
+            <button onClick={handleClose} className=" text-red-500 bg-gray-100">
+              <Close />
+            </button>
+          </div>
           <Typography
             id="modal-modal-title"
             variant="h4"
@@ -88,7 +102,7 @@ function Pay({ item }) {
             <div>
               <label htmlFor="monthSelect">Select Month: </label>
               <select
-                className="px-5 py-2 my-3 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md w-full"
+                className="px-5 py-2 my-3 outline-none border border-gray-200 text-dark-0 rounded w-full"
                 id="monthSelect"
                 value={selectedMonth}
                 onChange={handleMonthChange}
@@ -102,10 +116,10 @@ function Pay({ item }) {
                 ))}
               </select>
             </div>
-            <div>
+            <div className="">
               <label htmlFor="yearSelect">Select Year: </label>
               <select
-                className="px-5 py-2 my-3 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md w-full"
+                className="px-5 py-2 my-3  outline-none border border-gray-200 text-dark-01   rounded w-full"
                 id="yearSelect"
                 value={selectedYear}
                 onChange={handleYearChange}
@@ -117,23 +131,9 @@ function Pay({ item }) {
                 ))}
               </select>
             </div>
-          </div>
-          <div className="flex gap-2 justify-end pt-3 -mb-3">
-            <button
-              onClick={() => setOpen(false)}
-              className="px-5 py-1.5  rounded-md text-gray-700 bg-transparent border border-gray-400  flex items-center gap-2"
-            >
-              Cancel
-            </button>
-            {verified ? (
-              <button className="px-5 py-1.5 border  rounded-md text-white bg-accent  flex items-center gap-2">
-                Pay
-              </button>
-            ) : (
-              <Button variant="contained" disabled>
-                Pay
-              </Button>
-            )}
+            <div className=" col-span-2">
+              <Payment data={data} />
+            </div>
           </div>
         </Box>
       </Modal>

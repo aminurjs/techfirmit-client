@@ -1,6 +1,6 @@
-import { FaClipboardList, FaUsers } from "react-icons/fa";
+import { FaClipboardList, FaHome, FaUsers } from "react-icons/fa";
 import { SiGooglesheets } from "react-icons/si";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./menu.css";
 import useAdmin from "../Hooks/useAdmin";
 import useHR from "../Hooks/useHR";
@@ -12,6 +12,13 @@ const DashboardMenu = () => {
   const [isEmployee] = useEmployee();
   return (
     <>
+      <Link
+        to={"/dashboard"}
+        className="w-full my-2 py-3 px-5 text-dark-01 text-left text-lg font-medium bg-gray-100 hover:bg-gray-200 duration-500 flex items-center gap-3"
+      >
+        <FaHome className="text-2xl" />{" "}
+        <span className="hidden md:block">Home</span>
+      </Link>
       {isAdmin && (
         <NavLink
           to={"/dashboard/all-employee-list"}
