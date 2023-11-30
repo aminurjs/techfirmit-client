@@ -24,8 +24,7 @@ import swal from "sweetalert";
 const drawerWidth = 240;
 const navItems = [
   { id: 1, path: "/", name: "Home" },
-  { id: 2, path: "/dashboard", name: "Dashboard" },
-  { id: 3, path: "/contact-us", name: "Contact Us" },
+  { id: 2, path: "/contact-us", name: "Contact Us" },
 ];
 
 function DrawerAppBar(props) {
@@ -90,6 +89,18 @@ function DrawerAppBar(props) {
             </NavLink>
           </ListItem>
         ))}
+        {user && (
+          <ListItem disablePadding>
+            <NavLink to="dashboard">
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText
+                  sx={{ fontWeight: "600" }}
+                  primary={"Dashboard"}
+                />
+              </ListItemButton>
+            </NavLink>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
@@ -132,6 +143,11 @@ function DrawerAppBar(props) {
                   <Button sx={{ color: "#111" }}>{item.name}</Button>
                 </NavLink>
               ))}
+              {user && (
+                <NavLink to="dashboard">
+                  <Button sx={{ color: "#111" }}>Dashboard</Button>
+                </NavLink>
+              )}
             </Box>
             {!user ? (
               <Link to="/login">
